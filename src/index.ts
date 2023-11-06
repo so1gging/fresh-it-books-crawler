@@ -19,7 +19,7 @@ const aladin = async () => {
   const $booklist = $('form#Myform').children('div.ss_book_box')
 
   $booklist.each((i, elem) => {
-    const subjects = $(elem).find('.ss_book_list').first().find('ul>li').text()
+    const subjects = $(elem).find('.ss_book_list').first().find('ul>li>a.bo3').text()
     const image = $(elem).find('.flipcover_in>img').attr('src')
     console.log(subjects, image)
   })
