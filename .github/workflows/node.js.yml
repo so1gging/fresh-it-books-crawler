@@ -27,3 +27,16 @@ jobs:
 
     - name: npm run
       run: npm run dev
+
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v7
+      with:
+        message: 'Commit Text'
+        author_name: 'GitHub-Actions-Bot'
+        add: '*.json'
+        push: false
+    - name: Push
+      uses: ad-m/github-push-action@master
+      with:
+        branch: 'develop'
+        github_token: ${{ secrets.MY_GITHUB_TOKEN }}
