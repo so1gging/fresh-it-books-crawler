@@ -31,7 +31,7 @@ const aladin = async () => {
   })
 
   const jsonString = JSON.stringify(list)
-  fs.writeFile('src/data/test.json', jsonString, (err) => {
+  fs.writeFile('src/data/aladin.json', jsonString, (err) => {
     console.log(err)
     console.log('아라?')
   })
