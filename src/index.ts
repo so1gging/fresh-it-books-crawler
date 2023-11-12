@@ -1,6 +1,8 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 import { getCherrioAPI } from './utils/functions'
+import { GetBookInfo } from './utils/types'
+import * as fs from 'fs'
 
 export const getHtml = async (url: string) => {
   try {
@@ -18,10 +20,20 @@ const aladin = async () => {
 
   const $booklist = $('form#Myform').children('div.ss_book_box')
 
+  const list = new Array<GetBookInfo>()
   $booklist.each((i, elem) => {
     const subjects = $(elem).find('.ss_book_list').first().find('ul>li>a.bo3').text()
     const image = $(elem).find('.flipcover_in>img').attr('src')
-    console.log(subjects, image)
+    list.push({
+      name: subjects,
+      imageUrl: image,
+    })
+  })
+
+  const jsonString = JSON.stringify(list)
+  fs.writeFile('src/data/test.json', jsonString, (err) => {
+    console.log(err)
+    console.log('아라?')
   })
 }
 
