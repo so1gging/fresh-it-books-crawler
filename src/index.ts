@@ -32,8 +32,8 @@ const aladin = async () => {
 
   const jsonString = JSON.stringify(list)
   fs.writeFile('src/data/aladin.json', jsonString, (err) => {
-    console.log(err)
-    console.log('아라?')
+    if (err) return console.log('❌ ERROR :', err)
+    console.log('📌 알라딘의 신간 정보를 저장했어요 !')
   })
 }
 
@@ -46,11 +46,22 @@ const yes24 = async () => {
   const $ = cheerio.load(decoder.decode(html?.data))
   const $booklist = $('table#category_layout>tbody').children('tr')
 
+  const list = new Array<GetBookInfo>()
   $booklist.each((i, elem) => {
     const subjects = $(elem).find('.goodsTxtInfo>p').text()
     const image = $(elem).find('.goodsImgW>a').first().find('img').attr('src')
-    console.log(subjects, image)
+    list.push({
+      name: subjects,
+      imageUrl: image,
+    })
+  })
+
+  const jsonString = JSON.stringify(list)
+  fs.writeFile('src/data/yes24.json', jsonString, (err) => {
+    if (err) return console.log('❌ ERROR :', err)
+    console.log('📌 yes24의 신간 정보를 저장했어요 !')
   })
 }
 
 aladin()
+yes24()
