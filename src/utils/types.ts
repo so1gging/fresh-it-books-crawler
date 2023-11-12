@@ -1,5 +1,5 @@
 export type GetBookInfo = {
   name: string
-  imageUrl: string
+  imageUrl: string | undefined
   author?: string
 }
