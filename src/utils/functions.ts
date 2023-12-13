@@ -9,8 +9,8 @@ export const getHtml = async (url: string) => {
   }
 }
 
-export const getCherrioAPI = (data?: AllowSharedBufferSource) => {
-  const decoder = new TextDecoder('utf-8')
+export const getCherrioAPI = (data?: AllowSharedBufferSource, encoding = 'utf-8') => {
+  const decoder = new TextDecoder(encoding)
   const decodeHtmlDoc = decoder.decode(data)
   return cheerio.load(decodeHtmlDoc)
 }
