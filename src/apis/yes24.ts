@@ -1,5 +1,4 @@
 import { getCherrioAPI, getHtml } from '../utils/functions'
-import * as cheerio from 'cheerio'
 import { GetBookInfo } from '../utils/types'
 import fs from 'fs'
 const URL = 'https://www.yes24.com/24/Category/NewProductList/001001003020?sumGb=04'
