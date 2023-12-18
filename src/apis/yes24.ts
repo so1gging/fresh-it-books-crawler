@@ -17,7 +17,7 @@ export default async function getYes24() {
     }
 
     $booklist.each((i, elem) => {
-      const subjects = $(elem).find('.goodsTxtInfo>p').text()
+      const subjects = $(elem).find('.goodsTxtInfo').first().find('a').first().text()
       const image = $(elem).find('.goodsImgW>a').first().find('img').attr('src')
       list.push({
         name: subjects,
