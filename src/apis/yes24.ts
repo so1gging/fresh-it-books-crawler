@@ -1,9 +1,11 @@
 import { getCherrioAPI, getHtml } from '../utils/functions'
 import { GetBookInfo } from '../utils/types'
 import fs from 'fs'
+import { uploadJsonStringToStorage } from './storage'
+
 const URL = 'https://www.yes24.com/24/Category/NewProductList/001001003020?sumGb=04'
 
-export default async function getYes24() {
+export async function getYes24() {
   let page = 1
   const list = new Array<GetBookInfo>()
 
@@ -33,4 +35,12 @@ export default async function getYes24() {
     if (err) return console.log('❌ ERROR :', err)
     console.log(`📌 총 ${list.length}건의 yes24 신간 정보를 저장했어요 !`)
   })
+
+  uploadJsonStringToStorage('data/yes24.json', jsonString)
+    .then(() => {
+      console.log(`🔥 파이어베이스 Storage 에  yes24 신간 정보를 저장했어요 !`)
+    })
+    .catch((e) => {
+      console.log('❌ 파이어베이스 ERROR :', e.toString())
+    })
 }

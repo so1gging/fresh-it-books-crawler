@@ -1,10 +1,11 @@
 import { getCherrioAPI, getHtml } from '../utils/functions'
 import { GetBookInfo } from '../utils/types'
 import fs from 'fs'
+import { uploadJsonStringToStorage } from './storage'
 
 const URL = 'https://www.aladin.co.kr/shop/common/wnew.aspx?NewType=SpecialNew&BranchType=1&CID=351'
 
-export default async function getAladinList() {
+export async function getAladinList() {
   let page = 1
   const list = new Array<GetBookInfo>()
 
@@ -35,4 +36,12 @@ export default async function getAladinList() {
     if (err) return console.log('❌ ERROR :', err)
     console.log(`📌 총 ${list.length}건의 알라딘 신간 정보를 저장했어요 !`)
   })
+
+  uploadJsonStringToStorage('data/aladin.json', jsonString)
+    .then(() => {
+      console.log(`🔥 파이어베이스 Storage 에  알라딘 신간 정보를 저장했어요 !`)
+    })
+    .catch((e) => {
+      console.log('❌ 파이어베이스 ERROR :', e.toString())
+    })
 }
