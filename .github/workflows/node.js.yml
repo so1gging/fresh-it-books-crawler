@@ -24,6 +24,17 @@ jobs:
     - name: Install dependencies
       run: npm i
 
+      # .env 생성
+    - name: Create dotenv
+      run: |
+        touch .env
+        echo "API_KEY=${{ secrets.FIREBASE_API_KEY }}" >> .env
+        echo "DOMAIN=${{ secrets.FIREBASE_DOMAIN }}" >> .env
+        echo "PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> .env
+        echo "STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }}" >> .env
+        echo "MESSAGING_SENTER_ID=${{ secrets.FIREBASE_MESSAGING_SENTER_ID }}" >> .env
+        echo "APP_ID=${{ secrets.FIREBASE_APP_ID }}" >> .env
+
     - name: current Date
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
