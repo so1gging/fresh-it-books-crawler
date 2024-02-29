@@ -5,7 +5,7 @@ name: GET NEW IT BOOKS
 
 on:
   schedule:
-    - cron:  '0 0 * * *'
+    - cron:  '0 9 * * SUN'
 jobs:
   build:
     runs-on: ubuntu-latest
